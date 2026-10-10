@@ -1,9 +1,6 @@
 name: "SchemaSentry data contract check"
-description: >-
-  Validate a local dataset (CSV, Excel, JSON) against a SchemaSentry YAML
-  data contract. Fails the job when the dataset violates the contract.
-  Never uploads data or prints cell values; the job summary contains only
-  rule names, column names, and violation counts.
+description: "Validate CSV, Excel, and JSON datasets against a YAML data contract. Fails the job on violations; never leaks cell values."
+
 
 inputs:
   dataset:
