@@ -124,3 +124,6 @@ runs:
 branding:
   icon: "shield"
   color: "green"
+
+  - name: SchemaSentry data contract check
+  uses: Asadullah-prog/schemasentry@v0.1.1
