@@ -1,0 +1,48 @@
+# Example: validate datasets against SchemaSentry contracts on every push.
+#
+# Adapt this workflow to your repository:
+#   1. Keep your datasets and contracts in the repo (or fetch them in a prior step).
+#   2. Point `dataset` / `contract` at your files.
+#   3. If you use THIS repository's action, `uses: ./` works. If you consume
+#      SchemaSentry from another repository, replace `./` with
+#      `<owner>/schemasentry@<full-commit-sha>`.
+#
+# Third-party actions are pinned to full commit SHAs (version in the trailing
+# comment). See the note at the top of ci.yml for how to update pins.
+name: data-contract-check
+
+on:
+  push:
+    paths:
+      - "data/**"
+      - "contracts/**"
+      - "examples/**"
+  pull_request:
+    paths:
+      - "data/**"
+      - "contracts/**"
+      - "examples/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-customers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Check customers dataset
+        id: customers
+        uses: ./
+        with:
+          dataset: examples/customers.csv
+          contract: examples/schemasentry.yml
+
+      - name: Check customers workbook (explicit sheet)
+        uses: ./
+        with:
+          dataset: examples/customers.xlsx
+          contract: examples/schemasentry.yml
+          sheet: customers

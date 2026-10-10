@@ -1,0 +1,23 @@
+name: Feature request
+description: Suggest an improvement to SchemaSentry.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What data-validation problem would this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How should it work? Include example contract YAML or CLI usage if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: privacy
+    attributes:
+      label: Privacy considerations
+      description: Could this feature expose raw cell values in logs or reports? How should it avoid that?

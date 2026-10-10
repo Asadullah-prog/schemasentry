@@ -1,0 +1,59 @@
+# SchemaSentry contract (version "1") for examples/customers.csv.
+# See docs/contract-reference.md for the full rule reference.
+version: "1"
+name: customers
+description: "Example customer dataset contract."
+
+# Tokens treated as missing values (in addition to empty cells).
+missing_values: ["NA", "N/A", "null", "NULL", "None", "none"]
+
+columns:
+  customer_id:
+    type: string
+    required: true
+    nullable: false
+    unique: true
+    description: "Non-null, unique customer identifier."
+  email:
+    type: string
+    required: true
+    nullable: false
+    regex: "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$"
+    description: "Customer email address."
+  full_name:
+    type: string
+    required: true
+    nullable: false
+    min_length: 1
+    max_length: 100
+  age:
+    type: integer
+    required: false
+    nullable: true
+    min: 0
+    max: 120
+    description: "Optional customer age in years."
+  country:
+    type: string
+    required: true
+    nullable: false
+    allowed_values: ["US", "UK", "CA", "DE", "JP", "IT", "SE"]
+  status:
+    type: string
+    required: true
+    nullable: false
+    allowed_values: ["active", "trial", "churned"]
+  signup_date:
+    type: date
+    required: true
+    nullable: false
+    description: "ISO 8601 signup date (YYYY-MM-DD)."
+
+row_counts:
+  min_rows: 1
+  max_rows: 100000
+
+strictness:
+  # Unexpected columns fail validation in this example. Use "warn" or
+  # "ignore" if your producers add columns freely.
+  extra_columns: error

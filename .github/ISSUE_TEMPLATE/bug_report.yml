@@ -1,0 +1,36 @@
+name: Bug report
+description: Report a reproducible problem with SchemaSentry.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please include a minimal dataset snippet (synthetic data only — never paste real personal data).
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you expected vs. what actually happened.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Commands run, plus a tiny synthetic dataset and contract that trigger the issue.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: SchemaSentry version
+      description: Output of `schemasentry --version`, or the commit SHA.
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version and platform
+    validations:
+      required: true

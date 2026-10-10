@@ -1,0 +1,14 @@
+[
+  {
+    "order_id": "O-1",
+    "customer_id": "C-1001",
+    "total": "59.99",
+    "currency": "USD"
+  },
+  {
+    "order_id": "O-2",
+    "customer_id": "C-1002",
+    "total": "12.50",
+    "currency": "EUR"
+  }
+]
